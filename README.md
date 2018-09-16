@@ -21,10 +21,10 @@
  
  7) OK..Determinar si es un grafo completo
 
- 8) Informar cuál es el vértice de mayor grado (sumar los elementos de cada fila, excepto el vertice, 
+ 8) OK..Informar cuál es el vértice de mayor grado (sumar los elementos de cada fila, excepto el vertice, 
     e informar cual es el vertice que tiene mayo grado).
     
- 9)  Determinar si es grafo regular (si todos los vertices tienen el mismo grado)
+ 9) OK..Determinar si es grafo regular (si todos los vertices tienen el mismo grado)
  
  10) Poder agregar vertices  (al que esta cargado en la multilista)
    
