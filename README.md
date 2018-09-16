@@ -6,16 +6,12 @@
  determinar los siguientes puntos, en caso de ser un grafo :
  
  
- Vertices: cant. de filas de la matriz
- Total de Aristas: sumatoria de todas las filas (total de grados)
- 
- 
  
  1) OK..Verificar si es un grafo (la sumatoria de grados de todos los vertices tiene que ser igual al doble de aristas del grafo)
  
- 2) OK..Informar la cantidad de vértices
+ 2) OK..Informar la cantidad de vértices (cant. de filas de la matriz)
  
- 3) OK..Informar la cantidad de aristas
+ 3) OK..Informar la cantidad de aristas (sumatoria de todas las filas )
  
  4) OK..Determinar si es un grafo bipartito
  
