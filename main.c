@@ -1,26 +1,12 @@
 /*
+
 Realizar un programa que reciba como parámetro una matriz de adyacencia,
 la cual puede ser la representación de un grafo no dirigido.
 Se pide realizar la carga en una estructura dinámica, y a partir de ella
 determinar los siguientes puntos en caso de ser un grafo :
 
-Verificar si es un grafo (la sumatoria de grados de todos los vertices tiene que ser igual al doble de aristas)
-Cargar los vertices y los subnodos de cada uno de ellos en la multilista
+El programa funciona a partir de la carga de la matriz de adyacencia en el archivo "file.txt"
 
-OK..Informar la cantidad de vértices
-OK..Informar la cantidad de aristas
-OK..Determinar si es un grafo bipartito
-OK..Determinar si es un grafo plano
-OK..Determinar si es un grafo simple
-OK..Determinar si es un grafo completo
-
-Informar cuál es el vértice de mayor grado (sumar los elementos de cada fila (excepto el vertice), e informar cual es el vertice que tiene mayor)
-Determinar si es grafo regular (si todos los vertices tienen el mism grado)
-Poder agregar vertices
-Poder eliminar vertices
-
-Vertices: cant. de filas de la matriz
-Total de Aristas: sumatoria de todas las filas (total de grados)
 
 */
 
@@ -50,9 +36,13 @@ struct grafo {
    int hijo;
 }g;
 
+int aux[FILAS];
+
 void esGrafo(int aristas, int vertices, int num_filas);
 void esPlano(int aristas, int vertices);
 void esBipartito(int aristas, int vertices);
+void esRegular(int aux []);
+void gradoMaximo(int aux []);
 void ingresarVertice(nodo *registro);
 void ingresarSubnodo(nodo *registro);
 void mostrarVertice(nodo *registro);
@@ -160,12 +150,14 @@ int menu(){
             printf("  2. Eliminar Vertice \n");
             printf("  3. Eliminar Grafo \n");
             printf("  4. Probar si es Plano\n");
-            printf("  6. Mostrar Grafo\n");
-            printf("  5. Salir \n");
+            printf("  5. Probar si es Regular\n");
+            printf("  6. Vertice con Mayor Grado\n");
+            printf("  7. Mostrar Grafo\n");
+            printf("  8. Salir \n");
             printf("  ----------------------------------  \n");
             scanf("%d", &opcion);
             fflush(stdin);
-		}while (opcion < 1 || opcion > 5);
+		}while (opcion < 1 || opcion > 8);
 }
 
 void esGrafo(int aristas, int vertices, int num_filas)
@@ -178,7 +170,7 @@ void esGrafo(int aristas, int vertices, int num_filas)
 	    resp = menu();
 		switch (resp)
 		{
-		    case 5 :
+		    case 7 :
                 printf("Saliendo...");
                 printf("\n\n");
                 system("pause");
@@ -189,12 +181,22 @@ void esGrafo(int aristas, int vertices, int num_filas)
                 printf("\n\n");
                 system("pause");
                 break;
+            case 6 :
+                gradoMaximo(aux);
+                printf("\n\n");
+                system("pause");
+                break;
+            case 5 :
+                esRegular(aux);
+                printf("\n\n");
+                system("pause");
+                break;
             default:
                 printf("Opcion no contemplada", resp);
                 printf("\n\n");
                 break;
         }
-	}while(resp != 5);
+	}while(resp != 7);
    }
    else
    {
@@ -204,11 +206,41 @@ void esGrafo(int aristas, int vertices, int num_filas)
    }
 }
 
+void gradoMaximo(int aux []){
+    int i=0, max=0, pos=0;
+     for(i=0;i<FILAS;i++)
+     {
+         if (aux[i]>max)
+         {
+            max=aux[i];
+            pos=i;
+         }
+     }
+     printf("Vertice con mayor grado es el v:[%d] con Grado: %d\n", pos+1, max);
+}
+
+void esRegular(int aux []){
+    int i=0, cont=0;
+     for(i=0;i<FILAS;i++)
+     {
+         if (aux[i]==aux[i+1])
+         {
+            cont++;
+         }
+     }
+     if (cont==FILAS)
+         printf("Es Grafo regular de %d vertices - grado %d\n", FILAS, aux[0]);
+     else
+         printf("No es un grafo regular \n", cont);
+}
+
+
+
+
 int main(void)
 {
    FILE *entrada;
-   int ch=0, acu=0, num_filas=0, i=0, j=0, aristas=0, ingreso=0;
-   int aux[FILAS][COLUMNAS];
+   int ch=0, acu=0, num_filas=0, i=0, j=0, aristas=0, ingreso=0, k=0, conti=0, acum=0;
    int numerosExtraidos[100];
    //struct grafo g;
 
@@ -227,6 +259,7 @@ int main(void)
    printf("Matriz de Adyacencia: \n");
    for (i=0; i<FILAS; i++)
    {
+       conti++;
        fscanf(entrada, "%d", &g.vertice);
        printf("\n");
        printf("%d ", g.vertice);
@@ -235,7 +268,16 @@ int main(void)
              fscanf(entrada, "%d", &g.hijo);
              printf("%d ", g.hijo);
              acu=acu+g.hijo;
+             acum=acum+g.hijo;
          }
+         if (conti <=4 )
+         {
+                 acum=acum+g.hijo;
+                 printf("fila %d - acum %d", conti, acum);
+         }
+         aux[k]=acum;
+         k++;
+         acum=0;
    }
 
    fclose(entrada);
@@ -244,9 +286,10 @@ int main(void)
    printf("Nro de Vertices: %d\n", num_filas);
    printf("Nro de Aristas: %d\n", aristas);
    printf("Sumatoria grados: %d\n", acu);
+   //gradoMaximo(aux);
+   //esRegular(aux);
    esGrafo(aristas, acu, num_filas);
-   //esPlano(aristas, num_filas);
-   //esBipartito(aristas, num_filas);
+
 
    return EXIT_SUCCESS;
 }
