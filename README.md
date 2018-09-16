@@ -5,8 +5,11 @@
  Se pide realizar la carga en una estructura dinámica (multilistas), y a partir de ella
  determinar los siguientes puntos, en caso de ser un grafo :
  
+ 
  Vertices: cant. de filas de la matriz
  Total de Aristas: sumatoria de todas las filas (total de grados)
+ 
+ 
  
  1) OK..Verificar si es un grafo (la sumatoria de grados de todos los vertices tiene que ser igual al doble de aristas del grafo)
  
@@ -23,9 +26,9 @@
  7) OK..Determinar si es un grafo completo
 
  8) Informar cuál es el vértice de mayor grado (sumar los elementos de cada fila, excepto el vertice, 
-    e informar cual es el vertice que tiene mayor).
+    e informar cual es el vertice que tiene mayo grado).
     
- 9)  Determinar si es grafo regular (si todos los vertices tienen el miso grado)
+ 9)  Determinar si es grafo regular (si todos los vertices tienen el mismo grado)
  
  10) Poder agregar vertices  (al que esta cargado en la multilista)
    
