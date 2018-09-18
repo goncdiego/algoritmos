@@ -67,21 +67,20 @@ nodo *buscarNodo(nodo *registro, int dato)
 		}
 	}
 
-void agregarVertice(nodo *registro)
+void agregarVertice(nodo *registro, int vertice)
 {
 	subnodo *nuevo;
-    int varvertice;
 
 	//varvertice va a tener el vertice que voy a copiar del archivo.txt
-    if (strcmpi(varvertice, NULL) == 0){
+    if (vertice == NULL){
         registro->siguiente=NULL;
         return;
     }else{
-        registro->dato=varvertice;
+        registro->dato=vertice;
         registro->siguiente=(subnodo *)malloc(sizeof(subnodo));
         agregarSubnodo(registro->lista);
         registro->siguiente=(nodo *)malloc(sizeof(nodo));
-        agregarVertice(registro->siguiente);
+        agregarVertice(registro->siguiente, vertice);
     }
 }
 
@@ -241,7 +240,9 @@ int main(void)
 {
    FILE *entrada;
    int ch=0, acu=0, num_filas=0, i=0, j=0, aristas=0, ingreso=0, k=0, conti=0, acum=0;
-   int numerosExtraidos[100];
+   nodo *headNodo;
+   nodo *encontrado;
+   headNodo=(nodo *)malloc(sizeof(nodo));
    //struct grafo g;
 
    if ((entrada = fopen(NOM_ARCHIVO, "r")) == NULL){
@@ -274,6 +275,7 @@ int main(void)
          {
                  acum=acum+g.hijo;
                  printf("fila %d - acum %d", conti, acum);
+                 //ingresarVertice(conti);
          }
          aux[k]=acum;
          k++;
