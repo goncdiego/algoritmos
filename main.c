@@ -1,13 +1,9 @@
 /*
-
 Realizar un programa que reciba como parámetro una matriz de adyacencia,
 la cual puede ser la representación de un grafo no dirigido.
 Se pide realizar la carga en una estructura dinámica, y a partir de ella
 determinar los siguientes puntos en caso de ser un grafo :
-
 El programa funciona a partir de la carga de la matriz de adyacencia en el archivo "file.txt"
-
-
 */
 
 #include <stdio.h>
@@ -145,18 +141,15 @@ int menu(){
             printf("\n  >>>>>>>>>> MENU DE OPCIONES: <<<<<<<<<< \n");
             printf("  ---------------------------------- \n");
             printf("  Seleccione una opcion:      \n");
-            printf("  1. Crear Vertice \n");
-            printf("  2. Eliminar Vertice \n");
-            printf("  3. Eliminar Grafo \n");
-            printf("  4. Probar si es Plano\n");
-            printf("  5. Probar si es Regular\n");
-            printf("  6. Vertice con Mayor Grado\n");
-            printf("  7. Mostrar Grafo\n");
-            printf("  8. Salir \n");
+            printf("  1. Probar si es Plano\n");
+            printf("  2. Probar si es Regular\n");
+            printf("  3. Vertice con Mayor Grado\n");
+            printf("  4. Mostrar Grafo\n");
+            printf("  5. Salir \n");
             printf("  ----------------------------------  \n");
             scanf("%d", &opcion);
             fflush(stdin);
-		}while (opcion < 1 || opcion > 8);
+		}while (opcion < 1 || opcion > 5);
 }
 
 void esGrafo(int aristas, int vertices, int num_filas)
@@ -169,24 +162,24 @@ void esGrafo(int aristas, int vertices, int num_filas)
 	    resp = menu();
 		switch (resp)
 		{
-		    case 7 :
-                printf("Saliendo...");
-                printf("\n\n");
-                system("pause");
-                break;
-            case 4 :
+            case 1 :
                 esPlano(aristas, num_filas);
                 esBipartito(aristas, num_filas);
                 printf("\n\n");
                 system("pause");
                 break;
-            case 6 :
+            case 2 :
+                esRegular(aux);
+                printf("\n\n");
+                system("pause");
+                break;
+            case 3 :
                 gradoMaximo(aux);
                 printf("\n\n");
                 system("pause");
                 break;
             case 5 :
-                esRegular(aux);
+                printf("Saliendo...");
                 printf("\n\n");
                 system("pause");
                 break;
@@ -195,7 +188,7 @@ void esGrafo(int aristas, int vertices, int num_filas)
                 printf("\n\n");
                 break;
         }
-	}while(resp != 7);
+	}while(resp != 5);
    }
    else
    {
@@ -233,9 +226,6 @@ void esRegular(int aux []){
          printf("No es un grafo regular \n", cont);
 }
 
-
-
-
 int main(void)
 {
    FILE *entrada;
@@ -271,11 +261,10 @@ int main(void)
              acu=acu+g.hijo;
              acum=acum+g.hijo;
          }
-         if (conti <=4 )
+         if (conti <=FILAS )
          {
                  acum=acum+g.hijo;
                  printf("fila %d - acum %d", conti, acum);
-                 //ingresarVertice(conti);
          }
          aux[k]=acum;
          k++;
@@ -283,15 +272,11 @@ int main(void)
    }
 
    fclose(entrada);
-   aristas=2*num_filas;
+   aristas=2*conti;
    printf("\n\n");
-   printf("Nro de Vertices: %d\n", num_filas);
+   printf("Nro de Vertices: %d\n", conti);
    printf("Nro de Aristas: %d\n", aristas);
    printf("Sumatoria grados: %d\n", acu);
-   //gradoMaximo(aux);
-   //esRegular(aux);
    esGrafo(aristas, acu, num_filas);
-
-
    return EXIT_SUCCESS;
 }
