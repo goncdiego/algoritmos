@@ -3,7 +3,11 @@ Realizar un programa que reciba como parámetro una matriz de adyacencia,
 la cual puede ser la representación de un grafo no dirigido.
 Se pide realizar la carga en una estructura dinámica, y a partir de ella
 determinar los siguientes puntos en caso de ser un grafo :
+
 El programa funciona a partir de la carga de la matriz de adyacencia en el archivo "file.txt"
+La cantidad de Aristas del grafo se define globalmente en ARISTAS
+al igual que la cantidad de FILAS y COLUMNAS del grafo
+
 */
 
 #include <stdio.h>
@@ -11,6 +15,7 @@ El programa funciona a partir de la carga de la matriz de adyacencia en el archi
 #define NOM_ARCHIVO  "file.txt"
 #define FILAS 4
 #define COLUMNAS 4
+#define ARISTAS 4
 
 
 //para la multilista
@@ -144,12 +149,11 @@ int menu(){
             printf("  1. Probar si es Plano\n");
             printf("  2. Probar si es Regular\n");
             printf("  3. Vertice con Mayor Grado\n");
-            printf("  4. Mostrar Grafo\n");
-            printf("  5. Salir \n");
+            printf("  4. Salir \n");
             printf("  ----------------------------------  \n");
             scanf("%d", &opcion);
             fflush(stdin);
-		}while (opcion < 1 || opcion > 5);
+		}while (opcion < 1 || opcion > 4);
 }
 
 void esGrafo(int doble_aristas, int acu, int num_filas)
@@ -178,7 +182,7 @@ void esGrafo(int doble_aristas, int acu, int num_filas)
                 printf("\n\n");
                 system("pause");
                 break;
-            case 5 :
+            case 4 :
                 printf("Saliendo...");
                 printf("\n\n");
                 system("pause");
@@ -264,7 +268,7 @@ int main(void)
          if (conti <=FILAS )
          {
                  acum=acum+g.hijo;
-                 printf("fila %d - acum %d", conti, acum);
+                 //printf("fila %d - acum %d", conti, acum);
          }
          aux[k]=acum;
          k++;
@@ -272,10 +276,10 @@ int main(void)
    }
 
    fclose(entrada);
-   doble_aristas=2*acu;
+   doble_aristas=2*ARISTAS;
    printf("\n\n");
    printf("Nro de Vertices: %d\n", conti);
-   printf("Nro de Aristas: %d\n", acu);
+   printf("Nro de Aristas: %d\n", ARISTAS);
    printf("Sumatoria grados: %d\n", acu);
    esGrafo(doble_aristas, acu, num_filas);
    return EXIT_SUCCESS;
