@@ -152,10 +152,10 @@ int menu(){
 		}while (opcion < 1 || opcion > 5);
 }
 
-void esGrafo(int aristas, int vertices, int num_filas)
+void esGrafo(int doble_aristas, int acu, int num_filas)
 {
    int resp;
-   if (aristas==vertices)
+   if (doble_aristas==acu)
    {
         printf("Es un grafo.... \n");
         do {
@@ -163,8 +163,8 @@ void esGrafo(int aristas, int vertices, int num_filas)
 		switch (resp)
 		{
             case 1 :
-                esPlano(aristas, num_filas);
-                esBipartito(aristas, num_filas);
+                esPlano(doble_aristas, num_filas);
+                esBipartito(doble_aristas, num_filas);
                 printf("\n\n");
                 system("pause");
                 break;
@@ -229,7 +229,7 @@ void esRegular(int aux []){
 int main(void)
 {
    FILE *entrada;
-   int ch=0, acu=0, num_filas=0, i=0, j=0, aristas=0, ingreso=0, k=0, conti=0, acum=0;
+   int ch=0, acu=0, num_filas=0, i=0, j=0, doble_aristas=0, aristas=0, ingreso=0, k=0, conti=0, acum=0;
    nodo *headNodo;
    nodo *encontrado;
    headNodo=(nodo *)malloc(sizeof(nodo));
@@ -272,11 +272,11 @@ int main(void)
    }
 
    fclose(entrada);
-   aristas=2*conti;
+   doble_aristas=2*acu;
    printf("\n\n");
    printf("Nro de Vertices: %d\n", conti);
-   printf("Nro de Aristas: %d\n", aristas);
+   printf("Nro de Aristas: %d\n", acu);
    printf("Sumatoria grados: %d\n", acu);
-   esGrafo(aristas, acu, num_filas);
+   esGrafo(doble_aristas, acu, num_filas);
    return EXIT_SUCCESS;
 }
