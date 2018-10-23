@@ -33,6 +33,7 @@ struct grafo {
    int hijo;
 }g;
 
+
 // ??
 int aux[FILAS];
 

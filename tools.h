@@ -4,6 +4,8 @@
     del trabajo practico, sea para su creacion, control, o visualizacion.
 */
 
+#ifndef TOOLS
+#define TOOLS
 #include "commondef.h"
 
 //Herramientas
@@ -12,3 +14,7 @@ void esPlano(int, int);
 void esBipartito(int, int );
 void esRegular(int[]);
 void gradoMaximo(int[]);
+int contarAristas(header*);
+int contarVertices(header*);
+
+#endif

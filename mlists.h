@@ -3,6 +3,8 @@
     que estan relacionadas con la estructura de multilistas,
     sea para su creacion, control, o visualizacion.
 */
+#ifndef MLISTS
+#define MLISTS 
 
 #include "commondef.h"
 
@@ -25,3 +27,6 @@ void mostrarSubnodo(body*);
 void eliminarSubnodo(header*);
 void eliminarGrafo(header*);
 header *buscarNodo(header*, int);
+
+
+#endif 

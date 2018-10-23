@@ -17,6 +17,10 @@
 
 int menu();
 
+int numAristas = 0;
+int numVertices = 0;
+int sumatoriaGrados = 0;
+
 
 int main(int argc, char * argv[]){
 
@@ -24,7 +28,7 @@ int main(int argc, char * argv[]){
 
     crearHeader(p);
     mostrar(p);
-
+    printf(" %d",contarAristas(p));
     return 0;
 };
 

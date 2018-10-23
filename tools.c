@@ -1,5 +1,27 @@
 #include "tools.h"
 
+//Contamos las aristas del grafo
+int contarAristas(header * p){
+    int vertices = 0;
+    while(1){
+        body * aux = p->nextBody;
+        vertices++;//contamos el vertice
+        while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
+            vertices++;//Contamos el vertice
+            aux = aux->next;//Avanzamos al siguiente
+        };
+        if (p->nextHeader->vertice!=0)
+            p = p->nextHeader;
+        else return vertices;
+    }
+};
+
+//Contamos los vertices del grafo
+int contarVertices(header*p){
+    return 0;
+};
+
+
 //Determina si el grafo es plano
 void esPlano(int aristas, int vertices){
     if (aristas <= 3*vertices - 6 )
