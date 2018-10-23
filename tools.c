@@ -2,23 +2,34 @@
 
 //Contamos las aristas del grafo
 int contarAristas(header * p){
-    int vertices = 0;
+    int aristas = 0;
     while(1){
         body * aux = p->nextBody;
-        vertices++;//contamos el vertice
+        if(p->vertice > 0)aristas += p->vertice;//Aumentamos las aristas
         while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
-            vertices++;//Contamos el vertice
+            if(aux->vertice > 0)aristas += aux->vertice;//Aumentamos las aristas
             aux = aux->next;//Avanzamos al siguiente
         };
-        if (p->nextHeader->vertice!=0)
+        if (p->nextHeader->vertice!=CORTE_DE_CARGA)
             p = p->nextHeader;
-        else return vertices;
+        else return aristas;
     }
 };
 
 //Contamos los vertices del grafo
 int contarVertices(header*p){
-    return 0;
+    int vertices = 0;
+    while(1){
+        body * aux = p->nextBody;
+        vertices++;//contamos el vertice
+        while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
+            //vertices++;//Contamos el vertice
+            aux = aux->next;//Avanzamos al siguiente
+        };
+        if (p->nextHeader->vertice!=CORTE_DE_CARGA)
+            p = p->nextHeader;
+        else return vertices;
+    }
 };
 
 
@@ -48,68 +59,59 @@ void esBipartito(int aristas, int vertices){
 
 
 //Determina si el supuesto es grafo
-void esGrafo(int doble_aristas, int acu, int num_filas)
-{
-   int resp;
-   if (doble_aristas==acu)
-   {
-        printf("Es un grafo.... \n");
-        do {
-	    resp = menu();
-		switch (resp)
-		{
-            case 1 :
-                esPlano(doble_aristas, num_filas);
-                esBipartito(doble_aristas, num_filas);
-                printf("\n\n");
-                system("pause");
-                break;
-            case 2 :
-                esRegular(aux);
-                printf("\n\n");
-                system("pause");
-                break;
-            case 3 :
-                gradoMaximo(aux);
-                printf("\n\n");
-                system("pause");
-                break;
-            case 4 :
-                printf("Saliendo...");
-                printf("\n\n");
-                system("pause");
-                break;
-            default:
-                printf("Opcion no contemplada", resp);
-                printf("\n\n");
-                break;
-        }
-	}while(resp != 5);
-   }
+void esGrafo(int doble_aristas, int sumaGrados){
+   if (doble_aristas==sumaGrados)
+        printf("Es un grafo.\n");
    else
-   {
-       printf("No es un grafo, no hay operaciones disponibles \n");
-       fflush(stdin);
-       getchar();
-   }
+        printf("No es un grafo.\n");
 }
 
 //Determina el grado maximo del grafo
-void gradoMaximo(int aux []){
-    int i=0, max=0, pos=0;
-     for(i=0;i<FILAS;i++)
-     {
-         if (aux[i]>max)
-         {
-            max=aux[i];
-            pos=i;
-         }
-     }
-     printf("Vertice con mayor grado es el v:[%d] con Grado: %d\n", pos+1, max);
+int gradoMaximo(header* p){
+    int grado = 0;
+    int gradoMax = 0;
+    while(1){
+        body * aux = p->nextBody;
+        grado = 0;
+        grado += p->vertice;//Aumentamos el grado
+        while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
+            grado += aux->vertice;//Aumentamos el grado
+            aux = aux->next;//Avanzamos al siguiente
+        };
+        // Si el contador es mayor que el grado maximo
+        if(gradoMax < grado) gradoMax =  grado;//seteamos grado max 
+        
+        if (p->nextHeader->vertice!=CORTE_DE_CARGA)
+            p = p->nextHeader;
+        else return gradoMax;
+    }
 }
 
+
+//Determina la suma de todos los grados
+int sumaGrados(header* p){
+    int grado = 0;
+    int sumaGrados = 0;
+    while(1){
+        body * aux = p->nextBody;
+        grado = 0;
+        grado += p->vertice;//Aumentamos el grado
+        while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
+            grado += aux->vertice;//Aumentamos el grado
+            aux = aux->next;//Avanzamos al siguiente
+        };
+        // Si el contador es mayor que el grado maximo
+        sumaGrados +=  grado;//Acumulamos grados 
+        
+        if (p->nextHeader->vertice!=CORTE_DE_CARGA)
+            p = p->nextHeader;
+        else return sumaGrados;
+    }
+}
+
+
 //Determina si el grafo es regular
-void esRegular(int aux []){
+void esRegular(header * p){
     int i=0, cont=0;
      for(i=0;i<FILAS;i++)
      {

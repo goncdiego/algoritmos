@@ -9,11 +9,12 @@
 #include "commondef.h"
 
 //Herramientas
-void esGrafo(int, int, int);
+void esGrafo(int, int);
 void esPlano(int, int);
 void esBipartito(int, int );
-void esRegular(int[]);
-void gradoMaximo(int[]);
+void esRegular(header*);
+int gradoMaximo(header*);
+int sumaGrados(header*);
 int contarAristas(header*);
 int contarVertices(header*);
 

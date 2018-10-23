@@ -3,7 +3,7 @@
 void crearHeader(header*p){
     printf("\n Nuevo Header: ");
     scanf("%d",&p->vertice);
-    if(p->vertice == 0)
+    if(p->vertice == CORTE_DE_CARGA)
         p->nextHeader = NULL;
     else
     {
@@ -18,7 +18,7 @@ void crearHeader(header*p){
 void crearBody(body * p){
     printf("\n Nuevo body: ");
      scanf("%d",&p->vertice);
-    if(p->vertice == 0)
+    if(p->vertice == CORTE_DE_CARGA)
         p->next = NULL;
     else
     {
@@ -34,7 +34,7 @@ void mostrar(header*p){
         printf("\t %d",aux->vertice);//Mostramos su vertice
         aux = aux->next;//Avanzamos al siguiente
     };
-    if (p->nextHeader->vertice!=0) mostrar(p->nextHeader); //Si el siguiente header no es NULL, lo mostramos
+    if (p->nextHeader->vertice!=CORTE_DE_CARGA) mostrar(p->nextHeader); //Si el siguiente header no es NULL, lo mostramos
 };
 
 void mostrarFila(int num,body * p){

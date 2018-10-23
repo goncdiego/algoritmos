@@ -17,18 +17,57 @@
 
 int menu();
 
-int numAristas = 0;
-int numVertices = 0;
-int sumatoriaGrados = 0;
-
 
 int main(int argc, char * argv[]){
-
+    int opc, salir = 0;
+    int aristas;
+    int vertices;
+    int gradoMax;
+    
     header * p = (header*)malloc(sizeof(header));
 
     crearHeader(p);
     mostrar(p);
-    printf(" %d",contarAristas(p));
+    vertices = contarVertices(p);
+    aristas = contarAristas(p);
+    gradoMax = gradoMaximo(p);
+
+    printf("\n");
+    
+    
+
+    while(!salir){
+        opc = menu();
+        switch(opc){
+            default:
+                printf("Opcion no valida.");
+                break;
+            case 0:
+                esGrafo(vertices*2,sumaGrados(p));
+                break;
+            case 1:
+                esPlano(aristas,vertices);
+                break;
+            case 2:
+                esRegular(p);
+                break;
+            case 3:
+                esBipartito(aristas,vertices);
+                break;
+            case 4:
+                printf("Grado Max: %d\n", gradoMax);
+                break;
+            case 5:
+                printf("Vertices: %d\n", vertices);
+                break;
+            case 6:
+                printf("Aristas: %d\n", aristas);
+                break;
+            case 7:
+                salir = 1;
+                break;
+        };
+    };
     return 0;
 };
 
@@ -39,12 +78,17 @@ int menu(){
             printf("\n  >>>>>>>>>> MENU DE OPCIONES <<<<<<<<<< \n");
             printf("  ---------------------------------- \n");
             printf("  Seleccione una opcion:      \n");
+            printf("  0. Probar si es grafo\n");
             printf("  1. Probar si es Plano\n");
             printf("  2. Probar si es Regular\n");
-            printf("  3. Vertice con Mayor Grado\n");
-            printf("  4. Salir \n");
-            printf("  ----------------------------------  \n");
+            printf("  3. Probar si es bipartito\n");
+            printf("  4. Vertice con Mayor Grado\n");
+            printf("  5. Numero de vertices\n");
+            printf("  6. Numero de aristas\n");
+            printf("  7. Salir \n");
+            printf("  ----------------------------------  \n Opc: ");
             scanf("%d", &opcion);
             fflush(stdin);
 		}while (opcion < MIN_OPC || opcion > MAX_OPC);
+        return opcion;
 }
