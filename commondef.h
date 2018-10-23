@@ -13,7 +13,7 @@
 #define COLUMNAS 4 //Las columnas que posee la matriz del archivo
 #define ARISTAS 4 //Las aristas que posee la matriz del archivo
 #define MIN_OPC 0 //Minima opcion del menu
-#define MAX_OPC 7 //Maxima opcion del menu
+#define MAX_OPC 8 //Maxima opcion del menu
 
 #define CORTE_DE_CARGA -1//Numero a ingresar con el cual se termina de cargar
 

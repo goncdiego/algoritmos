@@ -1,13 +1,9 @@
 /*
-    Realizar un programa que reciba como par�metro una matriz de adyacencia,
-    la cual puede ser la representaci�n de un grafo no dirigido.
+    Jaime Gonzalez Bonorino
+    Realizar un programa que reciba como parametro una matriz de adyacencia,
+    la cual puede ser la representacian de un grafo no dirigido.
     Se pide realizar la carga en una estructura din�mica, y a partir de ella
-    determinar los siguientes puntos en caso de ser un grafo :
-
-    El programa funciona a partir de la carga de la matriz de adyacencia en el archivo "file.txt"
-    La cantidad de Aristas del grafo se define globalmente en ARISTAS
-    al igual que la cantidad de FILAS y COLUMNAS del grafo
-
+    determinar los siguientes puntos en caso de ser un grafo
 */
 
 #include "commondef.h"
@@ -49,7 +45,9 @@ int main(int argc, char * argv[]){
                 esPlano(aristas,vertices);
                 break;
             case 2:
-                esRegular(p);
+                if(esRegular(p) != -1)
+                    printf("Es regular\n");
+                else printf("No es regular\n");
                 break;
             case 3:
                 esBipartito(aristas,vertices);
@@ -64,6 +62,13 @@ int main(int argc, char * argv[]){
                 printf("Aristas: %d\n", aristas);
                 break;
             case 7:
+                eliminarSubnodo(p);
+                mostrar(p);
+                break;
+            case 8:
+                eliminarGrafo(p);
+                printf("El grafo ha sido eliminado de la memoria\n");
+                printf("Saliendo...");
                 salir = 1;
                 break;
         };
@@ -85,7 +90,8 @@ int menu(){
             printf("  4. Vertice con Mayor Grado\n");
             printf("  5. Numero de vertices\n");
             printf("  6. Numero de aristas\n");
-            printf("  7. Salir \n");
+            printf("  7. Eliminar subnodo\n");
+            printf("  8. Eliminar grafo y salir\n");
             printf("  ----------------------------------  \n Opc: ");
             scanf("%d", &opcion);
             fflush(stdin);

@@ -12,7 +12,7 @@ int contarAristas(header * p){
         };
         if (p->nextHeader->vertice!=CORTE_DE_CARGA)
             p = p->nextHeader;
-        else return aristas;
+        else return aristas/2;
     }
 };
 
@@ -111,17 +111,27 @@ int sumaGrados(header* p){
 
 
 //Determina si el grafo es regular
-void esRegular(header * p){
-    int i=0, cont=0;
-     for(i=0;i<FILAS;i++)
-     {
-         if (aux[i]==aux[i+1])
-         {
-            cont++;
-         }
-     }
-     if (cont==FILAS)
-         printf("Es Grafo regular de %d vertices - grado %d\n", FILAS, aux[0]);
-     else
-         printf("No es un grafo regular \n", cont);
+//Devuelve el grado de los vertices si es regular y devuelve -1 si no es regular
+int esRegular(header * p){
+    int grado = 0;
+    int gradoPrev = 0;
+    while(1){
+        body * aux = p->nextBody;
+        grado = 0;
+        grado += p->vertice;//Aumentamos el grado
+        while(aux->next!=NULL){ //Si el siguiente body es distinto de NULL
+            grado += aux->vertice;//Aumentamos el grado
+            aux = aux->next;//Avanzamos al siguiente
+        };
+        //Primera pasada establece el gradoPrev
+        if(gradoPrev == 0)
+            gradoPrev = grado;
+        // Verificamos si el grado es igual al grado previo
+        if(gradoPrev != grado)
+            return -1;
+            
+        if (p->nextHeader->vertice!=CORTE_DE_CARGA)
+            p = p->nextHeader;
+        else return gradoPrev;
+    }
 }

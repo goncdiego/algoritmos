@@ -13,20 +13,16 @@ void crearHeader(header*);
 void crearBody(body*);
 //Control multilista
 void mostrar(header*);
+void eliminarSubnodo(header*);
+void eliminarGrafo(header*);
 
 
 //TODO-FINISH
+//NOT IMPLEMENTED
+//void agregarVertice(header*); No solicitado
+//void agregarSubnodo(header*); No solicitado
+header *buscarNodo(header*, int);
 void mostrarFila(int,body*);
 void mostrarEnMatriz(header*);
-
-//NON IMPLEMENTED
-void ingresarVertice(header*);
-void ingresarSubnodo(header*);
-void mostrarVertice(header*);
-void mostrarSubnodo(body*);
-void eliminarSubnodo(header*);
-void eliminarGrafo(header*);
-header *buscarNodo(header*, int);
-
 
 #endif 

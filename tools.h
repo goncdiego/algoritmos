@@ -12,7 +12,7 @@
 void esGrafo(int, int);
 void esPlano(int, int);
 void esBipartito(int, int );
-void esRegular(header*);
+int esRegular(header*);
 int gradoMaximo(header*);
 int sumaGrados(header*);
 int contarAristas(header*);
